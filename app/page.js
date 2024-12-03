@@ -57,7 +57,8 @@ export default function Home() {
                      return (
                      <Card>
                     <h1>{account.name}</h1>
-                    <h2></h2>
+                    <div>    <h2>{account.accountNumber}</h2>
+</div>
                  </Card>)
                  })}
                  
