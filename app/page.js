@@ -2,7 +2,13 @@ import Image from "next/image";
 import localFont from 'next/font/local'
 import './globals.css'
 
-import { Card } from "../components/ui/card";
+import { Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle, } from "../components/ui/card";
+
 function AccountCard({ name, balance, accountNumber, logo }) {
   return (
     <Card className="overflow-hidden">
@@ -50,20 +56,23 @@ export default function Home() {
     }
   ]
     return (
-        <div>
+        
             <div>
-                 <h1> Ctr Alt Defeat </h1>
-                 {accounts.map((account) => {
-                     return (
-                     <Card>
-                    <h1>{account.name}</h1>
-                    <div>    <h2>{account.accountNumber}</h2>
-</div>
-                 </Card>)
-                 })}
-                 
-           </div>
-            
-        </div>
-    );
+              <div>
+                <h1>Ctrl Alt Defeat</h1>
+          
+                {/* Iterate over accounts */}
+                {accounts.map((account) => (
+                  <Card key={account.accountNumber}>
+                    <CardHeader>
+                      <CardTitle>{account.name}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <h2>{account.accountNumber}</h2>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          );
 }

@@ -14,8 +14,8 @@ const vouchers = [
 ]
 
 export default function GreenRewards() {
-  const greenLevel = 75 // This would normally come from an API or state
-  const cashbackRate = 1.25 // This would normally come from an API or state
+  const greenLevel = 75
+  const cashbackRate = 1.25
 
   return (
     <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6">
