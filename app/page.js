@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react'
 import { ArrowDownLeft, ArrowUpRight, ChevronRight, CreditCard, DollarSign, Search, Leaf } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Toggle } from "@/components/ui/toggle"
 import { useRouter } from "next/navigation"
 
 const transactions = [
@@ -16,20 +17,24 @@ const transactions = [
 
 export default function CurrentAccount() {
 
-    const [eco, setEco] = useState(false);
-    const [filteredTransactions, setFilteredTransactions] = useState(transactions)
-    
-    useEffect(() => {
-      if (eco) {
-        setFilteredTransactions(transactions.filter(transaction => transaction.sustainability !== undefined));
-      } else {
-        setFilteredTransactions(transactions)
-      }
-    }, [eco])
-
-    const handleEcoToggle = () => {
-      setEco(prevEco => !prevEco);
-    };
+  const [eco, setEco] = useState(false);
+  const [filteredTransactions, setFilteredTransactions] = useState(() => {
+    return eco ? transactions.filter(transaction => transaction.sustainability !== undefined) : transactions;
+  });
+  
+  useEffect(() => {
+    if (eco) {
+      setFilteredTransactions(transactions.filter(transaction => transaction.sustainability !== undefined));
+    } else {
+      setFilteredTransactions(transactions);
+    }
+  }, [eco]);
+  
+  const handleEcoToggle = () => {
+    console.log('here')
+    setEco(prevEco => !prevEco);
+  };
+  
 
     const router = useRouter(); 
     const handleClick = () => { router.push('./sustainable-club'); };
@@ -65,6 +70,11 @@ export default function CurrentAccount() {
             See all <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
 
+        </div>
+
+        <div className="mt-4 flex items-center"> 
+          <Toggle checked={eco} onChange={handleEcoToggle} className="bg-gray-200 rounded-full p-2" /> 
+          <span className="ml-3 text-white">{eco ? 'Eco Filter On' : 'Eco Filter Off'}</span> 
         </div>
 
         <div className="relative mb-6">

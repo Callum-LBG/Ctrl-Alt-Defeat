@@ -108,8 +108,8 @@ export default function GreenRewards() {
                     {vouchers.map((voucher) => (
                         <CarouselItem key={voucher.id}>
                             <Card>
-                                <div className="flex flex-row gap-2 content-center items-center justify-center">
-                                    <Avatar>
+                                <div className="flex flex-row gap-2 content-center items-center px-5">
+                                    <Avatar className="h-16 w-16">
                                         <AvatarImage src={voucher.avatar} />
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
