@@ -65,7 +65,7 @@ export default function GreenRewards() {
     }, [])
 
     return (
-        <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6">
+        <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6 page-slide-in">
             <header className="mb-8">
                 <div className="flex flex-row justify-between items-center">
                     <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
@@ -120,7 +120,7 @@ export default function GreenRewards() {
                                     <CardContent className="p-6">
                                         <h3 className="font-semibold mb-2">{voucher.title}</h3>
                                         <p className="text-sm text-gray-600 font-sans">{voucher.description}</p>
-                                </CardContent>
+                                    </CardContent>
                                 </div>
                             </Card>
                         </CarouselItem>
