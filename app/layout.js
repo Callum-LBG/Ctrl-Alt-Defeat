@@ -8,7 +8,7 @@ const arizonaMixBold = localFont({
 });
 
 const humanist = localFont({
-  src: "./fonts/Humanist521BT.otf",
+  src: "./fonts/Humanist521BT.ttf",
   variable: "--font-humanist",
   weight: "400",
 });
