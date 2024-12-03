@@ -71,7 +71,6 @@ export default function CurrentAccount() {
 
         <div className="mt-4 flex items-center"> 
         <Button onClick={handleEcoToggle} className={`px-4 py-2 rounded-full ${eco ? 'bg-green-700 text-white' : 'bg-gray-700 text-white'}`} > {eco ? 'Eco Filter On' : 'Eco Filter Off'} </Button> 
-          <span className="ml-3 text-white">{eco ? 'Eco Filter On' : 'Eco Filter Off'}</span> 
         </div>
 
         <div className="relative mb-6">
