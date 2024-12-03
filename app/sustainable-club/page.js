@@ -59,12 +59,9 @@ const vouchers = [
 ]
 
 export default function GreenRewards() {
-    const greenLevel = 75 // This would normally come from an API or state
-    const cashbackRate = 1.25 // This would normally come from an API or state
-
     let [xpVal, setXpVal] = useState(0)
     useEffect(() => {
-        setXpVal(greenLevel)
+        setXpVal(75)
     }, [])
 
     return (
@@ -96,7 +93,7 @@ export default function GreenRewards() {
                 <CardContent className="p-6">
                     <h2 className="text-2xl font-semibold mb-4">Cashback Rate</h2>
                     <div className="flex items-center justify-center">
-                        <Leaf className="text-green-600 mr-2 h-8 w-8" /> <span className="text-4xl font-bold text-green-600">{cashbackRate}%</span>
+                        <Leaf className="text-green-600 mr-2 h-8 w-8" /> <span className="text-4xl font-bold text-green-600">1.25%</span>
                     </div>
                     <p className="text-center mt-4 text-gray-600 font-sans">on eco-friendly purchases</p>
                 </CardContent>

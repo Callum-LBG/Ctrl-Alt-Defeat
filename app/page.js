@@ -30,10 +30,7 @@ export default function CurrentAccount() {
     }
   }, [eco]);
   
-  const handleEcoToggle = () => {
-    console.log('here')
-    setEco(prevEco => !prevEco);
-  };
+  const handleEcoToggle = (event) => { console.log('here'); setEco(event.target.checked); };
   
 
     const router = useRouter(); 
