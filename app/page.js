@@ -3,8 +3,6 @@ import localFont from 'next/font/local'
 import { Card, CardContent } from "@/components/ui/card"
 import './globals.css'
 
-//const arizonaBold = localFont({ src: './fonts/af/otf/ABCArizonaMix-Bold.otf' })
-
 function AccountCard({ name, balance, accountNumber, logo }) {
   return (
     <Card className="overflow-hidden">
