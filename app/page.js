@@ -19,7 +19,7 @@ export default function CurrentAccount() {
 
   const [eco, setEco] = useState(false);
   const [filteredTransactions, setFilteredTransactions] = useState(() => {
-    return eco ? transactions.filter(transaction => transaction.sustainability !== undefined) : transactions;
+    return !eco ? transactions.filter(transaction => transaction.sustainability !== undefined) : transactions;
   });
   
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function CurrentAccount() {
     }
   }, [eco]);
   
-  const handleEcoToggle = (event) => { console.log('here'); setEco(event.target.checked); };
+  const handleEcoToggle = (event) => { console.log('here'); setEco(!eco); };
   
 
     const router = useRouter(); 
@@ -70,7 +70,7 @@ export default function CurrentAccount() {
         </div>
 
         <div className="mt-4 flex items-center"> 
-          <Toggle checked={eco} onChange={handleEcoToggle} className="bg-gray-200 rounded-full p-2" /> 
+        <Button onClick={handleEcoToggle} className={`px-4 py-2 rounded-full ${eco ? 'bg-green-700 text-white' : 'bg-gray-700 text-white'}`} > {eco ? 'Eco Filter On' : 'Eco Filter Off'} </Button> 
           <span className="ml-3 text-white">{eco ? 'Eco Filter On' : 'Eco Filter Off'}</span> 
         </div>
 

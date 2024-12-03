@@ -35,7 +35,7 @@ function GreenSpeedometer({ level }) {
                     y="50%"
                     dy=".3em"
                     textAnchor="middle"
-                    className="text-3xl font-bold text-green-600"
+                    className="text-3xl font-bold text-[#40a95f]"
                 >
                     {`${level} / 100`}xp
                 </text>
@@ -93,7 +93,7 @@ export default function GreenRewards() {
                 <CardContent className="p-6">
                     <h2 className="text-2xl font-semibold mb-4">Cashback Rate</h2>
                     <div className="flex items-center justify-center">
-                        <Leaf className="text-green-600 mr-2 h-8 w-8" /> <span className="text-4xl font-bold text-green-600">1.25%</span>
+                        <Leaf className="text-[#40a95f] mr-2 h-8 w-8" /> <span className="text-4xl font-bold text-[#40a95f]">1.25%</span>
                     </div>
                     <p className="text-center mt-4 text-gray-600 font-sans">on eco-friendly purchases</p>
                 </CardContent>
@@ -105,7 +105,7 @@ export default function GreenRewards() {
                     {vouchers.map((voucher) => (
                         <CarouselItem key={voucher.id}>
                             <Card>
-                                <div className="flex flex-row gap-2 content-center items-center px-5">
+                                <div className="flex flex-row gap-0.5 content-center items-center px-5">
                                     <Avatar className="h-16 w-16">
                                         <AvatarImage src={voucher.avatar} />
                                         <AvatarFallback>CN</AvatarFallback>
