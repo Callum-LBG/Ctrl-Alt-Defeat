@@ -68,7 +68,7 @@ export default function GreenRewards() {
     return (
         <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6">
             <header className="mb-8">
-                <h1 className="text-3xl font-bold text-green-600 mb-2">Green Rewards</h1>
+                <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
                 <p className="text-gray-600 font-sans">Track your eco-friendly progress and earn rewards</p>
             </header>
 
