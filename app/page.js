@@ -1,6 +1,5 @@
 import Image from "next/image";
 import localFont from 'next/font/local'
-import { Card, CardContent } from "@/components/ui/card"
 import './globals.css'
 
 function AccountCard({ name, balance, accountNumber, logo }) {
@@ -53,8 +52,8 @@ export default function Home() {
         <div>
             <div>
                  <h1> Ctr Alt Defeat </h1>
-                 < AccountCard />  
-            </div>
+                 <Card></Card>
+           </div>
             
         </div>
     );
