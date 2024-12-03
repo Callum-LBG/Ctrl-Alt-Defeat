@@ -1,16 +1,11 @@
 import Image from "next/image";
 import localFont from 'next/font/local'
-import AccountCard from "./temp/components/components_account-card";
+import { Card, CardContent } from "@/components/ui/card"
 import './globals.css'
 
-const arizonaBold = localFont({ src: './fonts/af/otf/ABCArizonaMix-Bold.otf' })
-interface AccountCardProps {
-  name: string
-  balance: number
-  accountNumber: string
-  logo: string
-}
-function AccountCard({ name, balance, accountNumber, logo }: AccountCardProps) {
+//const arizonaBold = localFont({ src: './fonts/af/otf/ABCArizonaMix-Bold.otf' })
+
+function AccountCard({ name, balance, accountNumber, logo }) {
   return (
     <Card className="overflow-hidden">
       <CardContent className="p-4">

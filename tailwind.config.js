@@ -12,7 +12,8 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       fontFamily: {
-        serif: ['--font-arizona-mix-bold']
+        serif: ['--font-arizona-mix-bold'],
+        sans: ['--font-humanist'],
       }
     },
   },

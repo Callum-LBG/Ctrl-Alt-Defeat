@@ -7,6 +7,11 @@ const arizonaMixBold = localFont({
   weight: "700",
 });
 
+const humanist = localFont({
+  src: "./fonts/Humanist521BT.otf",
+  variable: "--font-humanist",
+  weight: "400",
+});
 
 export const metadata = {
   title: "Ctrl Alt",
@@ -17,7 +22,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${arizonaMixBold.variable} font-serif antialiased`}
+        className={`${arizonaMixBold.variable} ${humanist.variable} font-serif antialiased`}
       >
         {children}
       </body>
