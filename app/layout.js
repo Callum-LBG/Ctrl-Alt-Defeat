@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en">
             <body
-                className={`${arizonaMixBold.variable} ${humanist.variable} font-serif antialiased`}
+                className={`${arizonaMixBold.variable} ${humanist.variable} font-serif antialiased page-slide-in`}
             >
                 {children}
             </body>
