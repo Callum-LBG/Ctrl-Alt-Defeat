@@ -37,15 +37,16 @@ export default function CurrentAccount() {
 
   return (
     <div className="max-w-md mx-auto bg-gray-100 min-h-screen">
-      <header className="bg-green-600 text-white p-6 rounded-b-3xl">
-        <h1 className="text-2xl font-bold mb-4">Sustainable Current Account</h1>
+      <header className="bg-[#40a95f] text-white p-6 rounded-b-3xl">
+        <h1 className="text-4xl font-bold mb-4">Sustainable account</h1>
         <div className="flex justify-between items-center mb-4">
           <div>
             <p className="text-sm opacity-80">Available balance</p>
             <p className="text-3xl font-bold">£3,240.55</p>
           </div>
           <Button variant="outline" className="bg-transparent text-white border-white hover:bg-green-700" onClick={handleClick}>
-            <CreditCard className="mr-2 h-4 w-4" /> View Sus-Score
+            <CreditCard className="mr-2 h-4 w-4" /> 
+            Sustainability score
           </Button>
         </div>
         <div className="flex space-x-4">
@@ -62,10 +63,15 @@ export default function CurrentAccount() {
       <main className="p-6">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-semibold">Recent transactions</h2>
-        <Button variant="ghost" className="text-green-600 hover:text-green-700">
-          See all <ChevronRight className="ml-1 h-4 w-4" />
-        </Button>
-        <Button onClick={handleEcoToggle} className={`ml-4 px-4 py-2 rounded-full ${eco ? 'bg-green-700 text-white' : 'bg-gray-700 text-white'}`} > <Leaf className="mr-2 h-4 w-4 text-black" /> {eco ? 'Eco Filtered' : 'Eco Filtered'} </Button>
+        {eco ? (
+          <Button onClick={handleEcoToggle} className={`ml-4 px-4 py-2 rounded-full bg-green-300 text-black focus:none`}>
+            <Leaf className="mr-2 h-4 w-4" /> Eco filtered
+          </Button> 
+        ) : (
+          <Button onClick={handleEcoToggle} className={`ml-4 px-4 py-2 rounded-full bg-gray-300 text-black focus:none`}>
+            <Leaf className="mr-2 h-4 w-4" /> Eco filtered
+          </Button>
+        )}
       </div>
 
 
@@ -90,15 +96,15 @@ export default function CurrentAccount() {
                   <p className="text-sm text-gray-500">{transaction.date}</p>
                   {transaction.sustainability && (
                     <div className="flex items-center">
-                    <Leaf className={`font-semibold ${transaction.sustainability >= -1 ? 'text-green-500' : 'text-red-500'}`} />
-                    <span className={`font-semibold ${transaction.sustainability >= -1 ? 'text-green-500' : 'text-red-500'}`}>
+                    <Leaf className={`font-semibold ${transaction.sustainability >= -1 ? 'text-[#40a95f]' : 'text-red-500'}`} />
+                    <span className={`font-semibold ${transaction.sustainability >= -1 ? 'text-[#40a95f]' : 'text-red-500'}`}>
                       {transaction.sustainability}
                     </span>
                   </div>                  
                   )}
                 </div>
               </div>
-              <p className={`font-semibold ${transaction.type === 'debit' ? 'text-black-600' : 'text-green-600'}`}>
+              <p className={`font-semibold ${transaction.type === 'debit' ? 'text-black-600' : 'text-[#40a95f]'}`}>
                 {transaction.type === 'debit' ? '-' : '+'}£{Math.abs(transaction.amount).toFixed(2)}
               </p>
             </li>

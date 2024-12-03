@@ -68,7 +68,7 @@ export default function GreenRewards() {
         <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6 page-slide-in">
             <header className="mb-8">
                 <div className="flex flex-row justify-between items-center">
-                    <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
+                    <h1 className="text-4xl font-bold mb-2">Green rewards</h1>
                     <Link href="/">
                         <Button variant="ghost" size="icon">
                             <Home />
@@ -106,7 +106,10 @@ export default function GreenRewards() {
                 </CardContent>
             </Card>
 
-            <h2 className="text-2xl font-semibold mb-4">Available Vouchers</h2>
+            <div className="mb-4">
+                <h2 className="text-2xl font-semibold">Available Vouchers</h2>
+                <p className="text-gray-600 font-sans">Level up for more rewards!</p>
+            </div>
             <Carousel className="w-full max-w-xs mx-auto">
                 <CarouselContent>
                     {vouchers.map((voucher) => (
