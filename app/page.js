@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Toggle } from "@/components/ui/toggle"
 import { useRouter } from "next/navigation"
 
-const transactions = [
+const initialTransaction = [
   { id: 1, type: 'debit', description: 'Amazon.com', amount: -79.99, date: '2023-06-01', sustainability: -10},
   { id: 2, type: 'credit', description: 'Salary', amount: 2500.00, date: '2023-05-31' },
   { id: 3, type: 'debit', description: "Farmer\'s Market", amount: -45.23, date: '2023-05-30', sustainability: 5},
@@ -18,15 +18,14 @@ const transactions = [
 export default function CurrentAccount() {
 
   const [eco, setEco] = useState(false);
-  const [filteredTransactions, setFilteredTransactions] = useState(() => {
-    return !eco ? transactions.filter(transaction => transaction.sustainability !== undefined) : transactions;
-  });
+  const [transactions, setTransactions] = useState(initialTransaction);
   
   useEffect(() => {
+    console.log('changed')
     if (eco) {
-      setFilteredTransactions(transactions.filter(transaction => transaction.sustainability !== undefined));
+      setTransactions(transactions.filter(transaction => transaction.sustainability !== undefined));
     } else {
-      setFilteredTransactions(transactions);
+      setTransactions(initialTransaction);
     }
   }, [eco]);
   
@@ -61,17 +60,14 @@ export default function CurrentAccount() {
 
 
       <main className="p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold">Recent transactions</h2>
-          <Button variant="ghost" className="text-green-600 hover:text-green-700">
-            See all <ChevronRight className="ml-1 h-4 w-4" />
-          </Button>
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-xl font-semibold">Recent transactions</h2>
+        <Button variant="ghost" className="text-green-600 hover:text-green-700">
+          See all <ChevronRight className="ml-1 h-4 w-4" />
+        </Button>
+        <Button onClick={handleEcoToggle} className={`ml-4 px-4 py-2 rounded-full ${eco ? 'bg-green-700 text-white' : 'bg-gray-700 text-white'}`} > <Leaf className="mr-2 h-4 w-4 text-black" /> {eco ? 'Eco Filtered' : 'Eco Filtered'} </Button>
+      </div>
 
-        </div>
-
-        <div className="mt-4 flex items-center"> 
-        <Button onClick={handleEcoToggle} className={`px-4 py-2 rounded-full ${eco ? 'bg-green-700 text-white' : 'bg-gray-700 text-white'}`} > {eco ? 'Eco Filter On' : 'Eco Filter Off'} </Button> 
-        </div>
 
         <div className="relative mb-6">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />

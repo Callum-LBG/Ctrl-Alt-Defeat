@@ -45,7 +45,7 @@ function GreenSpeedometer({ level }) {
 }
 
 import React, { useEffect, useState } from 'react'
-import { Leaf, ArrowLeft } from 'lucide-react'
+import { Leaf, ArrowLeft, ArrowRight, Home } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
@@ -67,13 +67,13 @@ export default function GreenRewards() {
     return (
         <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6">
             <header className="mb-8">
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-row justify-between items-center">
+                    <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
                     <Link href="/">
                         <Button variant="ghost" size="icon">
-                            <ArrowLeft />
+                            <Home />
                         </Button>
                     </Link>
-                    <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
                 </div>
                 <p className="text-gray-600 font-sans">Track your eco-friendly progress and earn rewards</p>
             </header>
@@ -90,12 +90,19 @@ export default function GreenRewards() {
             </Card>
 
             <Card className="mb-8">
-                <CardContent className="p-6">
-                    <h2 className="text-2xl font-semibold mb-4">Cashback Rate</h2>
-                    <div className="flex items-center justify-center">
-                        <Leaf className="text-[#40a95f] mr-2 h-8 w-8" /> <span className="text-4xl font-bold text-[#40a95f]">1.25%</span>
+                <CardContent className="p-6 flex flex-col gap-3">
+                    <div>
+                        <h2 className="text-2xl font-semibold">Cashback Rate</h2>
+                        <p className="text-gray-600 font-sans">on eco-friendly purchases - level up to increase cashback</p>
                     </div>
-                    <p className="text-center mt-4 text-gray-600 font-sans">on eco-friendly purchases</p>
+                    <div className="flex flex-row gap-2 items-center justify-center">
+                        <div className="flex flex-row items-center">
+                            <Leaf className="text-[#40a95f] mr-2 h-8 w-8" /> <span className="text-4xl font-bold text-[#40a95f]">1.25%</span>
+                        </div>
+
+                        <ArrowRight className="text-[#9587ed]" />
+                        <h4 className="text-[#9587ed] text-md font-semibold">2.00%</h4>
+                    </div>
                 </CardContent>
             </Card>
 
