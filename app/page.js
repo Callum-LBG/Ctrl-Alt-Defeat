@@ -2,8 +2,7 @@ import Image from "next/image";
 import localFont from 'next/font/local'
 import './globals.css'
 
-im
-
+import { Card } from "../components/ui/card";
 function AccountCard({ name, balance, accountNumber, logo }) {
   return (
     <Card className="overflow-hidden">
@@ -54,7 +53,14 @@ export default function Home() {
         <div>
             <div>
                  <h1> Ctr Alt Defeat </h1>
-                 <Card></Card>
+                 {accounts.map((account) => {
+                     return (
+                     <Card>
+                    <h1>{account.name}</h1>
+                    <h2></h2>
+                 </Card>)
+                 })}
+                 
            </div>
             
         </div>
