@@ -45,15 +45,17 @@ function GreenSpeedometer({ level }) {
 }
 
 import React, { useEffect, useState } from 'react'
-import { ChevronLeft, ChevronRight, Leaf } from 'lucide-react'
+import { Leaf, ArrowLeft } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import Link from 'next/link'
 
 const vouchers = [
-    { id: 1, title: "10% off at EcoStore", description: "Valid until 30/06/2023" },
-    { id: 2, title: "£5 off public transport", description: "Valid for next 3 months" },
-    { id: 3, title: "Free reusable coffee cup", description: "Redeem at any partner cafe" },
+    { id: 1, avatar: "https://imgs.search.brave.com/-Q0LLbPDdwzkIh0toXCERPPSlEGvM8_SCuAi9odVBF8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTI4/MDAwNTIyOS9waG90/by9zYW50YS1mZS1u/ZXctbWV4aWNvLWEt/d29tYW4td2VhcnMt/YS1wYXRhZ29uaWEt/amFja2V0LmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz1lZHl1/TzhGNWlUMXd4MmxZ/QXozc1IxZjQ4bHMw/cGxLa1JmTlIzSGVa/cG04PQ", title: "10% off at Patagonia", description: "Valid until 30/06/2023" },
+    { id: 2, avatar: "https://imgs.search.brave.com/Gog1KkvebsWqOzZihg4_WjV6XUH5he9oQhNOATKdrCQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuY3RmYXNzZXRz/Lm5ldC9udjd5OTNp/ZGY0anEvMmozN3di/VDFjMzNtMjVhMloy/MDNadC85NDJjYjJj/NjY5YzhkNWU4Mjhj/NWI4YmE1YTkwYTE3/ZC9NZXRyb2xpbmtf/dHJhbV9pbl9tYW5j/aGVzdGVyX2NpdHlf/Y2VudHJlLmpwZw", title: "£5 off a TFGM trip", description: "Valid for next 3 months" },
+    { id: 3, avatar: "https://imgs.search.brave.com/VrQCvzc43Pbrwf7A5HZ2IeSJOZ_cUPYrQWYJoHUWpwg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdG9q/by5jby9jZG4vc2hv/cC9maWxlcy8yNG96/LUN1cC1PcGFxdWUt/Q2FybmF0aW9uLnBu/Zz9jcm9wPWNlbnRl/ciZoZWlnaHQ9MzA3/MiZ2PTE3MjM1NTU1/MzUmd2lkdGg9MzA3/Mg", title: "Free reusable Stojo cup", description: "Redeem at any partner cafe" },
 ]
 
 export default function GreenRewards() {
@@ -68,7 +70,14 @@ export default function GreenRewards() {
     return (
         <div className="max-w-md mx-auto bg-gray-100 min-h-screen p-6">
             <header className="mb-8">
-                <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
+                <div className="flex flex-row gap-2">
+                    <Link href="/">
+                        <Button variant="ghost" size="icon">
+                            <ArrowLeft />
+                        </Button>
+                    </Link>
+                    <h1 className="text-3xl font-bold mb-2">Green Rewards</h1>
+                </div>
                 <p className="text-gray-600 font-sans">Track your eco-friendly progress and earn rewards</p>
             </header>
 
@@ -99,10 +108,16 @@ export default function GreenRewards() {
                     {vouchers.map((voucher) => (
                         <CarouselItem key={voucher.id}>
                             <Card>
-                                <CardContent className="p-6">
-                                    <h3 className="font-semibold mb-2">{voucher.title}</h3>
-                                    <p className="text-sm text-gray-600 font-sans">{voucher.description}</p>
+                                <div className="flex flex-row gap-2 content-center items-center justify-center">
+                                    <Avatar>
+                                        <AvatarImage src={voucher.avatar} />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+                                    <CardContent className="p-6">
+                                        <h3 className="font-semibold mb-2">{voucher.title}</h3>
+                                        <p className="text-sm text-gray-600 font-sans">{voucher.description}</p>
                                 </CardContent>
+                                </div>
                             </Card>
                         </CarouselItem>
                     ))}

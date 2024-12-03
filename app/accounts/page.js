@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { ArrowDownLeft, ArrowUpRight, ChevronRight, CreditCard, DollarSign, Search, Leaf } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,11 +10,26 @@ const transactions = [
   { id: 1, type: 'debit', description: 'Amazon.com', amount: -79.99, date: '2023-06-01', sustainability: -10},
   { id: 2, type: 'credit', description: 'Salary', amount: 2500.00, date: '2023-05-31' },
   { id: 3, type: 'debit', description: "Farmer\'s Market", amount: -45.23, date: '2023-05-30', sustainability: 5},
-  { id: 4, type: 'debit', description: 'Netflix', amount: -12.99, date: '2023-05-29',sustainability: -10 },
+  { id: 4, type: 'debit', description: 'Netflix', amount: -12.99, date: '2023-05-29',sustainability: 10 },
   { id: 5, type: 'credit', description: 'Refund', amount: 25.00, date: '2023-05-28', },
 ]
 
 export default function CurrentAccount() {
+
+    const [eco, setEco] = useState(false);
+    const [filteredTransactions, setFilteredTransactions] = useState(transactions)
+    
+    useEffect(() => {
+      if (eco) {
+        setFilteredTransactions(transactions.filter(transaction => transaction.sustainability !== undefined));
+      } else {
+        setFilteredTransactions(transactions)
+      }
+    }, [eco])
+
+    const handleEcoToggle = () => {
+      setEco(prevEco => !prevEco);
+    };
 
     const router = useRouter(); 
     const handleClick = () => { router.push('./sustainable-club'); };
@@ -49,6 +64,10 @@ export default function CurrentAccount() {
           <Button variant="ghost" className="text-green-600 hover:text-green-700">
             See all <ChevronRight className="ml-1 h-4 w-4" />
           </Button>
+          <Button onClick={handleEcoToggle} className="mt-4 bg-green-700 text-white">
+            Toggle Eco Filter
+          </Button>
+
         </div>
 
         <div className="relative mb-6">

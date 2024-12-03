@@ -1,78 +1,108 @@
-import Image from "next/image";
-import localFont from 'next/font/local'
-import './globals.css'
+"use client"
 
-import { Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle, } from "../components/ui/card";
+import React, {useState, useEffect} from 'react'
+import { ArrowDownLeft, ArrowUpRight, ChevronRight, CreditCard, DollarSign, Search, Leaf } from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 
-function AccountCard({ name, balance, accountNumber, logo }) {
+const transactions = [
+  { id: 1, type: 'debit', description: 'Amazon.com', amount: -79.99, date: '2023-06-01', sustainability: -10},
+  { id: 2, type: 'credit', description: 'Salary', amount: 2500.00, date: '2023-05-31' },
+  { id: 3, type: 'debit', description: "Farmer\'s Market", amount: -45.23, date: '2023-05-30', sustainability: 5},
+  { id: 4, type: 'debit', description: 'Netflix', amount: -12.99, date: '2023-05-29',sustainability: 10 },
+  { id: 5, type: 'credit', description: 'Refund', amount: 25.00, date: '2023-05-28', },
+]
+
+export default function CurrentAccount() {
+
+    const [eco, setEco] = useState(false);
+    const [filteredTransactions, setFilteredTransactions] = useState(transactions)
+    
+    useEffect(() => {
+      if (eco) {
+        setFilteredTransactions(transactions.filter(transaction => transaction.sustainability !== undefined));
+      } else {
+        setFilteredTransactions(transactions)
+      }
+    }, [eco])
+
+    const handleEcoToggle = () => {
+      setEco(prevEco => !prevEco);
+    };
+
+    const router = useRouter(); 
+    const handleClick = () => { router.push('./sustainable-club'); };
+
   return (
-    <Card className={`overflow-hidden`}>
-      <CardContent className="p-4">
-        <div className="flex items-start justify-between">
-          <div className="flex gap-3">
-            <Image
-              src={logo}
-              alt={`${name} logo`}
-              width={24}
-              height={24}
-              className="rounded-sm"
-            />
-            <div>
-              <div className="font-medium">{name}</div>
-              <div className="text-sm text-muted-foreground">{accountNumber}</div>
-            </div>
+    <div className="max-w-md mx-auto bg-gray-100 min-h-screen">
+      <header className="bg-green-600 text-white p-6 rounded-b-3xl">
+        <h1 className="text-2xl font-bold mb-4">Sustainable Current Account</h1>
+        <div className="flex justify-between items-center mb-4">
+          <div>
+            <p className="text-sm opacity-80">Available balance</p>
+            <p className="text-3xl font-bold">£3,240.55</p>
           </div>
-          <div className="font-semibold">£{balance.toFixed(2)}</div>
+          <Button variant="outline" className="bg-transparent text-white border-white hover:bg-green-700" onClick={handleClick}>
+            <CreditCard className="mr-2 h-4 w-4" /> View Sus-Score
+          </Button>
         </div>
-      </CardContent>
-    </Card>
-  )
-}
-export default function Home() {
+        <div className="flex space-x-4">
+          <Button variant="outline" className="bg-transparent flex-1 text-white border-white hover:bg-green-700">
+            <ArrowDownLeft className="mr-2 h-4 w-4" /> Pay in
+          </Button>
+          <Button variant="outline" className="bg-transparent flex-1 text-white border-white hover:bg-green-700">
+            <ArrowUpRight className="mr-2 h-4 w-4" /> Send money
+          </Button>
+        </div>
+      </header>
 
-    const accounts = [
-    {
-      name: "Halifax Current Account",
-      balance: 155.48,
-      accountNumber: "12-34-56 / 12345678",
-      logo: "/placeholder.svg?height=24&width=24"
-    },
-    {
-      name: "MBNA Current Account",
-      balance: 78.53,
-      accountNumber: "65-43-21 / 87654321",
-      logo: "/placeholder.svg?height=24&width=24"
-    },
-    {
-      name: "Bank of Scotland Saver",
-      balance: 500.00,
-      accountNumber: "34-56-78 / 34567890",
-      logo: "/placeholder.svg?height=24&width=24"
-    }
-  ]
-    return (
-        
-            <div>
-              <div>
-                <h1>Ctrl Alt Defeat</h1>
-          
-                {/* Iterate over accounts */}
-                {accounts.map((account) => (
-                  <Card key={account.accountNumber}>
-                    <CardHeader>
-                      <CardTitle>{account.name}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <h2>{account.accountNumber}</h2>
-                    </CardContent>
-                  </Card>
-                ))}
+
+      <main className="p-6">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-xl font-semibold">Recent transactions</h2>
+          <Button variant="ghost" className="text-green-600 hover:text-green-700">
+            See all <ChevronRight className="ml-1 h-4 w-4" />
+          </Button>
+
+        </div>
+
+        <div className="relative mb-6">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <Input type="text" placeholder="Search transactions" className="pl-10" />
+        </div>
+
+        <ul className="space-y-4">
+          {transactions.map((transaction) => (
+            <li key={transaction.id} className="bg-white p-4 rounded-lg shadow flex justify-between items-center">
+              <div className="flex items-center">
+                <div className={`mr-4 p-2 rounded-full ${transaction.type === 'debit' ? 'bg-gray-200' : 'bg-gray-100'}`}>
+                  {transaction.type === 'debit' ? (
+                    <ArrowUpRight className="h-6 w-6 text-black-600" />
+                  ) : (
+                    <ArrowDownLeft className="h-6 w-6 text-gray-600" />
+                  )}
+                </div>
+                <div>
+                  <p className="font-semibold">{transaction.description}</p>
+                  <p className="text-sm text-gray-500">{transaction.date}</p>
+                  {transaction.sustainability && (
+                    <div className="flex items-center">
+                    <Leaf className={`font-semibold ${transaction.sustainability >= -1 ? 'text-green-500' : 'text-red-500'}`} />
+                    <span className={`font-semibold ${transaction.sustainability >= -1 ? 'text-green-500' : 'text-red-500'}`}>
+                      {transaction.sustainability}
+                    </span>
+                  </div>                  
+                  )}
+                </div>
               </div>
-            </div>
-          );
+              <p className={`font-semibold ${transaction.type === 'debit' ? 'text-black-600' : 'text-green-600'}`}>
+                {transaction.type === 'debit' ? '-' : '+'}£{Math.abs(transaction.amount).toFixed(2)}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </div>
+  )
 }
