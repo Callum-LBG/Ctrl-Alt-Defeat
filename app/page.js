@@ -2,6 +2,8 @@ import Image from "next/image";
 import localFont from 'next/font/local'
 import './globals.css'
 
+im
+
 function AccountCard({ name, balance, accountNumber, logo }) {
   return (
     <Card className="overflow-hidden">
