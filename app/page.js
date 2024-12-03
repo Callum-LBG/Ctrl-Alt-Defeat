@@ -11,7 +11,7 @@ import { Card,
 
 function AccountCard({ name, balance, accountNumber, logo }) {
   return (
-    <Card className="overflow-hidden">
+    <Card className={`overflow-hidden`}>
       <CardContent className="p-4">
         <div className="flex items-start justify-between">
           <div className="flex gap-3">
