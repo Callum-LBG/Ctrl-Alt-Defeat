@@ -1,4 +1,7 @@
 import Image from "next/image";
+import localFont from 'next/font/local'
+
+const arizona_bold = localFont({ src: './fonts/af/otf/ABCArizonaMix-Bold.otf' })
 
 export default function Home() {
   return (
