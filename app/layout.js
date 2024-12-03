@@ -2,15 +2,15 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const arizonaMixBold = localFont({
-  src: "./fonts/af/otf/ABCArizonaMix-Bold.otf",
-  variable: "--font-arizona-mix-bold",
-  weight: "700",
+    src: "./fonts/af/otf/ABCArizonaMix-Bold.otf",
+    variable: "--font-arizona-mix-bold",
+    weight: "700",
 });
 
 const humanist = localFont({
-  src: "./fonts/Humanist521BT.ttf",
-  variable: "--font-humanist",
-  weight: "400",
+    src: "./fonts/Humanist521BT.ttf",
+    variable: "--font-humanist",
+    weight: "400",
 });
 
 export const metadata = {
